@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Lab - JazminSchroeder
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+  %body
+    .topbar
+      .fill
+        .container
+          =link_to "Knowledge < Lab::Experimenting", "/", :class => "brand" 
+          %p.pull-right
+            = link_to "My Blog", "http://jazminschroeder.com"
+    .container
+      .row.margin-top10  
+        = yield
+
