@@ -1,0 +1,2 @@
+module AuthorizeNetReportingHelper
+end

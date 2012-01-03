@@ -1,0 +1,29 @@
+%h1 Authorize Net Reports
+
+%form
+  %fieldset 
+    %legend Find settled transactions by date:
+  %div.row
+    %div.span4
+      From: 
+      = text_field_tag 'from', "2011/04/20", :style => "width:100px"
+    %div.span4  
+      To: 
+      = text_field_tag 'to', "2011/05/20", :style => "width:100px"
+    %div.span4
+      =submit_tag 'Submit', :class=>"btn primary" 
+-if @transactions
+  %table.zebra-striped
+    %thead
+      %tr
+        %th Batch 
+        %th Settlement Time
+        %th Settlement State
+        %th Payment Method
+    -@transactions.each do |transaction|
+      %tr
+        %td= transaction.batch_id
+        %td= transaction.settlement_time_utc
+        %td= transaction.settlement_state
+        %td= transaction.payment_method
+  
