@@ -2,11 +2,17 @@ Lab::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
   root :to => 'welcome#index'
-  resources :authorize_net_reports do
-    collection do 
-      get 'transaction_list'
-    end  
-  end  
+
+  #Authorize Net Reports
+  match 'authorize_net_reports' => 'authorize_net_reports#index'
+  match 'authorize_net_reports/batch_transactions/:batch_id' => 'authorize_net_reports#batch_transactions', :as => :batch_transactions
+  match 'authorize_net_reports/transaction_details/:id' => 'authorize_net_reports#transaction_details', :as => :transaction
+  # namespace :authorize_net_reports do 
+  #   #  resources :transactions
+  #     resources :batches
+  #     
+  #   end  
+  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

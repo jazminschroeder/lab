@@ -1,0 +1,32 @@
+%h2 Batch #{@batch.batch_id}
+= link_to "<< Back to Transaction Search", authorize_net_reports_path 
+.well
+  %h3 Summary:
+  %ul.unstyled
+    -@batch.statistics.each do |statistic|
+      %li= "#{statistic[:account_type]} : #{number_to_currency(statistic[:charge_amount])}"     
+
+%h3= "Transaction List"
+-if @transactions
+  %table.table.table-striped
+    %thead
+      %tr
+        %th Transaction ID
+        %th Card Holder
+        %th Account Type
+        %th Account Number
+        %th Status
+        %th Settlement Time
+        %th Settle Amount
+    -@transactions.each do |transaction|
+      %tr
+        %td= link_to transaction.trans_id, transaction_path(transaction.trans_id)
+        %td= "#{transaction.first_name} #{transaction.last_name}" 
+        %td= transaction.account_type
+        %td= transaction.account_number
+        %td= transaction.transaction_status.titleize
+        %td= transaction.submit_time_local
+        %td= number_to_currency(transaction.settle_amount)
+
+
+        

@@ -1,0 +1,23 @@
+%h2 #{link_to "Batch #{@transaction.batch_id}", batch_transactions_path(@transaction.batch_id)}  | Transaction #{@transaction.trans_id}
+= link_to "<< Back to Transaction Search", authorize_net_reports_path 
+
+%h3 Transaction Details
+%ul.unstyled
+  %li
+    %strong First Name: 
+    =@transaction.first_name
+  %li
+    %strong Last Name: 
+    =@transaction.last_name
+  %li
+    %strong Settle Amount: 
+    =number_to_currency(@transaction.settle_amount)
+  %li
+    %strong Card Number: 
+    =@transaction.card_number
+  %li 
+    %strong Card Type: 
+    =@transaction.card_type
+  %li
+    %strong Email: 
+    =@transaction.email
