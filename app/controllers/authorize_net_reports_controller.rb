@@ -1,3 +1,4 @@
+require 'authorize_net_reporting'
 class AuthorizeNetReportsController < ApplicationController
   before_filter :authorize_net_report
   
@@ -18,10 +19,6 @@ class AuthorizeNetReportsController < ApplicationController
   
   private
   def authorize_net_report
-    if @report.blank?
-       config = YAML.load_file("#{Rails.root}/config/authorize_net.yml")["development"]
-       report = AuthorizeNetReporting::Report.new({ mode: "test", login: config["login"], key: config["key"] })
-    end
-    @report     
+    @report ||= (config = YAML.load_file("#{Rails.root}/config/authorize_net.yml")["development"];  AuthorizeNetReporting::Report.new({ mode: "test", login: config["login"], key: config["key"] }))
   end
 end
