@@ -6,6 +6,7 @@ gem 'rails', '3.2.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'thin'
 gem 'authorize_net_reporting'
 
 # Gems used only for assets and not required
@@ -31,7 +32,6 @@ gem 'haml-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 group :development do
-  gem 'thin'
   gem 'pry'
   gem 'awesome_print'
 end  
